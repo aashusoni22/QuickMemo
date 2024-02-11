@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickMemo - A simple note taking app</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <aside class="sideBar">
+      <h1 class="logo"><i class="fa-solid fa-signature"></i> <span class="quick">Quick</span>Memo</h1>
+      <button id="addNoteBtn">+ Add a Note</button>
+      <nav class="navBar">
+        <ul class="menu">
+          <li class="option selected" id="allNotes">
+            <span><i class="fa-regular fa-note-sticky"></i></span>All Notes
+          </li>
+          <li class="option" id="favs">
+            <span><i class="fa-regular fa-heart"></i></span>Favorites
+          </li>
+          <li class="option" id="archive">
+            <span><i class="fa-regular fa-folder"></i></span>Archives
+          </li>
+          <li class="option" id="trash">
+            <span><i class="fa-regular fa-trash-can"></i></span>Trash
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <div class="content">
+      <div class="searchBar">
+        <input
+          type="search"
+          id="search"
+          placeholder="Search titles, notes, date, keyword..."
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <img src="moon.png" id="modeIcon" class="slider round"></img>
+        </label>
+      </div>
+    </div>
+    <div class="notesContainer">
+        <h3 class="menuHeading"></h3>
+      <div class="notes"></div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/fe8b7c562d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

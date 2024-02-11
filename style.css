@@ -1,0 +1,339 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+.sideBar {
+  padding: 16px;
+  width: 212px;
+  height: 100vh;
+  position: fixed;
+  border-right: 1px solid #ccc;
+}
+
+.logo {
+  margin-top: 12px;
+  margin-bottom: 48px;
+  font-size: 21px;
+  color: #282828;
+  text-align: center;
+}
+
+.quick {
+  color: rgb(0, 119, 255);
+  font-weight: 700;
+}
+
+#addNoteBtn {
+  margin-bottom: 10px;
+  background-color: rgb(0, 119, 255);
+  color: white;
+  border: none;
+  padding: 6px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.option span {
+  margin-right: 8px;
+  margin-left: 5px;
+}
+
+.option:hover {
+  cursor: pointer;
+  transition: 0.1s;
+  border-left: 3px solid rgb(0, 119, 255);
+}
+
+.content {
+  margin-left: 211px;
+  margin-bottom: 30px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  padding-left: 28px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+
+.searchBar input {
+  width: 800px;
+  height: 38px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  padding-left: 38px;
+  padding-right: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.notes {
+  width: 500px;
+  margin-left: 240px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Create four equal columns */
+  gap: 10px;
+}
+
+.note {
+  padding: 15px;
+  width: 285px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #ccc;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  margin-top: 20px;
+  color: #3b3b3b;
+  justify-content: center;
+}
+
+.icons i:hover {
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.fa-note-sticky {
+  color: rgb(0, 119, 255);
+}
+
+.fa-heart {
+  color: crimson;
+}
+
+.fa-folder {
+  color: orange;
+}
+
+.fa-trash-can {
+  color: rgb(118, 118, 118);
+}
+
+.blue,
+.orange,
+.yellow,
+.purple {
+  border-radius: 11px;
+  width: 16px;
+  cursor: pointer;
+}
+
+.blue {
+  background-color: #bacfff;
+}
+
+.orange {
+  background-color: rgb(255, 196, 85);
+}
+
+.yellow {
+  background-color: #ffff83;
+}
+
+.purple {
+  background-color: rgb(255, 145, 255);
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  left: 254px;
+  top: 34px;
+  font-size: 15px;
+  color: grey;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: bold;
+  height: 30px;
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+  color: #3b3b3b;
+}
+
+.noteItem {
+  height: 120px;
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 14px;
+  color: #3b3b3b;
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 380px;
+  em {
+    margin-left: 10px;
+    font-size: 10px;
+  }
+  gap: 8px;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 22px;
+  position: relative;
+  width: 40px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #ffffff;
+  transition: 0.2s all ease-in-out;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 0px;
+  content: "";
+  height: 20px;
+  left: 0px;
+  position: absolute;
+  transition: 0.4s;
+  width: 20px;
+}
+
+input:checked + .slider {
+  background-color: #282828;
+  transition: 0.2s all ease-in-out;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18.5px);
+}
+
+.slider.round {
+  border-radius: 34px;
+  background-color: white;
+  transition: 0.2s all ease-in-out;
+}
+
+#modeIcon {
+  width: 25px;
+  background-color: white;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.dark {
+  background-color: #181818;
+  color: white;
+  transition: 0.2s all ease-in-out;
+
+  #search {
+    background-color: #282828;
+    color: white;
+    transition: 0.2s all ease-in-out;
+  }
+  .icons {
+    color: #ababab;
+  }
+  .logo {
+    color: white;
+    font-weight: lighter;
+  }
+  .sideBar,
+  .content,
+  .searchBar input,
+  .theme-switch {
+    border-color: #4d4d4d;
+    transition: 0.2s all ease-in-out;
+    color: white;
+  }
+
+  .note {
+    border-color: #4d4d4d;
+    transition: 0.2s all ease-in-out;
+  }
+
+  .title,
+  .noteItem {
+    color: #ffffff;
+    background-color: #181818;
+    transition: 0.2s all ease-in-out;
+  }
+  #modeIcon {
+    background-color: #181818;
+  }
+}
+
+.note-date {
+  font-size: 12px;
+  color: grey;
+  margin-top: 10px;
+}
+
+.note-hidden {
+  display: none;
+}
+
+.mode-icon-clicked {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.selected {
+  font-weight: bold;
+  border-left: 3px solid rgb(0, 119, 255);
+}
+
+.menuHeading {
+  margin-left: 242px;
+  color: rgb(0, 119, 255);
+  margin-bottom: 35px;
+}
