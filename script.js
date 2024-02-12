@@ -11,19 +11,9 @@ const trashMenu = document.querySelector("#trash");
 const menuHeading = document.querySelector(".menuHeading");
 const messageContainer = document.querySelector(".message-container"); // New container for the message
 
-function saveNotesToLocalStorage() {
-  const serializedNotes = JSON.stringify(note.innerHTML);
-  localStorage.setItem("notes", serializedNotes);
-}
-
-function loadNotesFromLocalStorage() {
-  const serializedNotes = localStorage.getItem("notes");
-  if (serializedNotes) {
-    notes.innerHTML = JSON.parse(serializedNotes);
-  }
-}
-
+// Also add an event listener for dark mode toggle
 darkMode.addEventListener("click", () => {
+  // Toggle dark mode
   document.body.classList.toggle("dark");
   const isDarkMode = document.body.classList.contains("dark");
   if (isDarkMode) {
@@ -115,7 +105,6 @@ function createNote() {
       fav.classList.remove("fa-regular");
       fav.classList.add("fa-solid");
     }
-    saveNotesToLocalStorage();
   });
 
   archive.addEventListener("click", () => {
@@ -165,13 +154,12 @@ function createNote() {
     trash.classList.toggle("fa-solid", "fa-inbox");
     note.classList.toggle("trashed");
     note.classList.add("note-hidden");
+    showAlert("Note deleted successfully!");
     if (note.classList.contains("favorite")) {
       note.classList.remove("favorite");
-      confirm("Are you sure you want to delete favorited note?");
     }
     if (note.classList.contains("archived")) {
       note.classList.remove("archived");
-      confirm("Are you sure you want to delete archived note?");
     }
     purple.classList.remove("purple");
     orange.classList.remove("orange");
@@ -260,7 +248,6 @@ function createNote() {
       noteItem.focus();
     }
   });
-  saveNotesToLocalStorage();
 }
 
 addNoteBtn.addEventListener("click", createNote);
@@ -307,7 +294,6 @@ const menuIcons = {
 document.addEventListener("DOMContentLoaded", () => {
   // Trigger click event on the default menu item (e.g., allNotesMenu)
   allNotesMenu.click();
-  loadNotesFromLocalStorage();
 });
 
 function showNotesByMenuItem(menuItem) {
@@ -397,3 +383,10 @@ menuItems.forEach((item) => {
     item.classList.add("selected");
   });
 });
+
+function showAlert(message) {
+  // Show an alert dialog with the given message
+  setTimeout(() => {
+    alert(message);
+  }, 300);
+}
