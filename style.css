@@ -292,7 +292,9 @@ input:checked + .slider:before {
     border-color: #4d4d4d;
     transition: 0.2s all ease-in-out;
   }
-
+  .message-container {
+    color: #ffffff;
+  }
   .title,
   .noteItem {
     color: #ffffff;
@@ -350,8 +352,43 @@ input:checked + .slider:before {
   justify-content: center;
   margin-left: 213px;
   margin-top: 200px;
+  font-weight: bold;
+  color: #282828;
 }
 
-.fa-face-sad-tear {
-  color: rgb(255, 203, 16);
+.fa-ghost {
+  color: rgb(0, 119, 255);
+}
+
+/* Responsive styles using media queries */
+@media only screen and (max-width: 768px) {
+  .sideBar {
+    max-width: 100%; /* Adjust maximum width */
+    border-right: none; /* Remove border */
+    position: static; /* Reset position */
+  }
+
+  .content {
+    padding: 10px; /* Adjust padding */
+    margin-left: 0; /* Reset margin */
+  }
+
+  .searchBar input {
+    width: calc(100% - 38px); /* Adjust width */
+  }
+
+  .notes {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(150px, 1fr)
+    ); /* Adjust grid */
+  }
+
+  .note {
+    padding: 10px; /* Adjust padding */
+  }
+
+  .icons {
+    margin-top: 10px; /* Adjust margin */
+  }
 }

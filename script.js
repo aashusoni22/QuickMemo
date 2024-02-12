@@ -347,7 +347,7 @@ function showNotesByMenuItem(menuItem) {
     !messageContainer.querySelector(".no-notes-message")
   ) {
     const message = document.createElement("p");
-    message.innerHTML = `No Notes to show <i class="fa-solid fa-face-sad-tear"></i>`;
+    message.innerHTML = `No Notes to show <i class="fa-solid fa-ghost"></i>`;
 
     message.classList.add("no-notes-message");
     messageContainer.appendChild(message);
