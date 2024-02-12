@@ -9,6 +9,7 @@ const archiveMenu = document.querySelector("#archive");
 const allNotesMenu = document.querySelector("#allNotes");
 const trashMenu = document.querySelector("#trash");
 const menuHeading = document.querySelector(".menuHeading");
+const messageContainer = document.querySelector(".message-container"); // New container for the message
 
 function saveNotesToLocalStorage() {
   const serializedNotes = JSON.stringify(note.innerHTML);
@@ -109,10 +110,7 @@ function createNote() {
         // If the note is trashed, hide the note
         note.classList.add("note-hidden");
       }
-      if (note.classList.contains("archived")) {
-        note.classList.remove("favorite");
-        note.classList.remove("note-hidden");
-      }
+
       // Change the heart icon to solid
       fav.classList.remove("fa-regular");
       fav.classList.add("fa-solid");
@@ -122,25 +120,42 @@ function createNote() {
 
   archive.addEventListener("click", () => {
     if (note.classList.contains("archived")) {
-      // If the note is in archived, remove it from archived
       note.classList.remove("archived");
+      note.classList.remove("favorite");
+      icons.appendChild(purple);
+      icons.appendChild(orange);
+      icons.appendChild(yellow);
+      icons.appendChild(blue);
+      icons.appendChild(fav);
+      icons.appendChild(archive);
+      icons.appendChild(trash);
       if (archiveMenu.classList.contains("selected")) {
-        // If the current menu is archived, hide the note
         note.classList.add("note-hidden");
       }
-      // Change the folder icon to regular
       archive.classList.remove("fa-solid");
       archive.classList.add("fa-regular");
     } else {
       note.classList.add("archived");
+      note.classList.add("note-hidden");
+      purple.classList.remove("purple");
+      orange.classList.remove("orange");
+      yellow.classList.remove("yellow");
+      blue.classList.remove("blue");
+      fav.classList.remove("fa-solid", "fa-heart");
+      archive.classList.remove("fa-regular", "fa-folder");
+      archive.classList.add("fa-solid", "fa-folder");
+      if (fav.classList.contains("fa-solid")) {
+        fav.classList.remove("fa-solid");
+        fav.classList.add("fa-regular");
+      }
+
       if (note.classList.contains("favorite")) {
-        // If the note is trashed, hide the note
+        note.classList.remove("favorite");
         note.classList.add("note-hidden");
       } else if (note.classList.contains("favorite")) {
         note.classList.remove("favorite");
         note.classList.add("note-hidden");
       }
-      // Change the folder icon to solid
       archive.classList.remove("fa-regular");
       archive.classList.add("fa-solid");
     }
@@ -165,7 +180,6 @@ function createNote() {
     fav.classList.remove("fa-solid", "fa-heart");
     archive.classList.remove("fa-regular", "fa-folder");
     archive.classList.remove("fa-solid", "fa-folder");
-    trash.classList.remove("fa-solid", "fa-trash-can");
     trash.classList.remove("fa-solid", "fa-trash-can");
     icons.appendChild(recover);
     recover.classList.add("fa-solid", "fa-inbox");
@@ -301,6 +315,8 @@ function showNotesByMenuItem(menuItem) {
   const heading = menuItem.innerText;
   menuHeading.innerHTML = icon + " " + heading;
   const allNotes = document.querySelectorAll(".note");
+  let hasVisibleNotes = false; // Flag to track if there are any visible notes
+
   allNotes.forEach((note) => {
     if (
       menuItem.id === "allNotes" &&
@@ -308,19 +324,40 @@ function showNotesByMenuItem(menuItem) {
       !note.classList.contains("archived")
     ) {
       note.classList.remove("note-hidden");
+      hasVisibleNotes = true;
     } else if (menuItem.id === "favs" && note.classList.contains("favorite")) {
       note.classList.remove("note-hidden");
+      hasVisibleNotes = true;
     } else if (
       menuItem.id === "archive" &&
       note.classList.contains("archived")
     ) {
       note.classList.remove("note-hidden");
+      hasVisibleNotes = true;
     } else if (menuItem.id === "trash" && note.classList.contains("trashed")) {
       note.classList.remove("note-hidden");
+      hasVisibleNotes = true;
     } else {
       note.classList.add("note-hidden");
     }
   });
+  // Show message if there are no visible notes
+  if (
+    !hasVisibleNotes &&
+    !messageContainer.querySelector(".no-notes-message")
+  ) {
+    const message = document.createElement("p");
+    message.innerHTML = `No Notes to show <i class="fa-solid fa-face-sad-tear"></i>`;
+
+    message.classList.add("no-notes-message");
+    messageContainer.appendChild(message);
+  } else if (
+    hasVisibleNotes &&
+    messageContainer.querySelector(".no-notes-message")
+  ) {
+    // Remove the message if there are visible notes
+    messageContainer.querySelector(".no-notes-message").remove();
+  }
 }
 
 // Event listeners for menu items
